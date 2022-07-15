@@ -1,0 +1,21 @@
+<h2>
+    Lista de categorias
+</h2>
+{{#each categoria}}
+    <div>
+        {{nome}}
+        <br>
+        {{slog}}
+        <br>
+        <a href="/admin/categoria/edit/{{_id}}" ><button class="btn btn-success">editar</button></a>
+         <form action="/admin/categorias1" method="post" style="display: inline-block;">
+            <input type="hidden" name="id" value="{{_id}}">
+            <button class="btn btn-danger">eliminar</button>
+            </form>
+        <hr>
+    </div>
+    {{else}}
+    <h1>nenhuma categoria registrada</h1>
+{{/each}}
+
+<a href="categoria/add"><button class="btn btn-primary">Nova Categoria</button></a>

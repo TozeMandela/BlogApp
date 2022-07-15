@@ -1,0 +1,23 @@
+<h3>Add New Categoria</h3>
+
+<div class="card">
+    <div class="card-body">
+        {{#each texto}}
+            {{texton}}
+            <br>
+            {{textos}}
+            <br>
+            {{textonp}}
+        {{/each}}
+        <form action="/admin/categoria/add" method="post">
+            <label for="nome">Nome: </label>
+            <input type="text" id="nome" name="nome" placeholder="nome da categoria" class="form-control">
+            <label for="slog">Slog: </label>
+            <input type="text" id="slog" name="slog" placeholder="slog"class="form-control">
+            <br>
+            <button type="submit" class="btn btn-success">salvar</button> 
+            <a href="/admin/categorias" class="btn btn-danger">Cancelar</a>
+        </form>
+    </div>
+</div>
+    
