@@ -1,0 +1,37 @@
+<h3>add nova postagem</h3>
+
+<div class="card">
+    <div class="card-body">
+        {{#each texto}}
+            {{texton}}
+            <br>
+            {{textos}}
+            <br>
+            {{textonp}}
+        {{/each}}
+        <form action="/admin/postagens/postagem/add" method="post">
+            <label for="nome">Nome: </label>
+            <input type="text" id="nome" name="nome" placeholder="nome da categoria" class="form-control">
+            <label for="slog">Slog: </label>
+            <input type="text" id="slog" name="slog" placeholder="slog"class="form-control">
+            <label for="descricao">Descricao: </label>
+            <input type="text" id="descricao" name="descricao" placeholder="descricao da categoria" class="form-control">
+            <label for="conteudo">Conteúdo: </label>
+            <textarea style="resize: none;" id="conteudo" name="conteudo" placeholder="conteudo" class="form-control"></textarea>
+            <label for="categoria">Categoria:</label>
+            <select name="categoria" class="custom-select mt-1" id="categoria" >
+                {{#each dados}}
+                    <option value="{{_id}}">{{nome}}</option>
+                {{else}}
+                    <option value="0"><h3>nenhuma categoria salva</h3></option>
+                {{/each}}
+            </select>
+            <label for="data"></label>
+            <input type="date" name="data" id="data" class="form-control">
+            <br>
+            <button type="submit" class="btn btn-success mt-2">salvar</button> 
+            <a href="/admin/postagens/postagens" class="btn btn-danger mt-2">Cancelar</a>
+        </form>
+    </div>
+</div>
+    

@@ -1,0 +1,28 @@
+<h2>
+    Lista de Postagens
+</h2>
+{{#each postagem}}
+    <div>
+        {{nome}}
+        <br>
+        {{slog}}
+        <br>
+        {{descricao}}
+        <br>
+        {{conteudo}}
+        <br>
+        categoria: 
+        {{#each categ}}
+            {{nome}}
+        {{/each}}
+        {{categoria}}
+        <br>
+        {{data}}
+        <br>
+        <hr>
+    </div>
+    {{else}}
+    <h1>Nenhuma Postagem registrada</h1>
+{{/each}}
+
+<a href="/admin/postagens/postagem/add"><button class="btn btn-primary">Nova Postagem</button></a>

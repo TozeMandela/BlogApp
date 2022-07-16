@@ -2,7 +2,9 @@ const express = require('express');
 const routes = express.Router();
 const mongoose = require('mongoose');
 require('../Models/Categoria');
+require('../Models/Postagem')
 const Categorias = mongoose.model("Categorias");
+const Postagens = mongoose.model("postagens");
 const validatorInput = require('../utilitarios/validator');
 
 routes.get('/',(req, res)=>{
@@ -88,6 +90,45 @@ routes.post('/categorias',(req, res)=>{
             });
         });
     }
+});
+
+routes.get('/postagens/postagens', (req, res)=>{
+    const cat = [];
+    
+    Postagens.find().then(dados=>{
+         
+      dados.forEach((el,i)=>{ 
+        Categorias.findOne({_id:el.categoria}).then(d=>{
+            cat[i]=d;
+        }).catch(()=>{
+            console.log('erro a pesquisar')
+        })})
+        console.log(cat)
+        //res.render('postagens/postagens',{postagem: dados.map(d=>d.toJSON()),categ:cat.map(d=>d.toJSON())})
+    })
+    
+});
+
+routes.get('/postagens/postagem/add', (req, res)=>{
+    Categorias.find().then(d=>{
+        console.log(d)
+        res.render('postagens/addPostagem',{dados:d.map(r=>r.toJSON())})
+    });
+});
+
+routes.post('/postagens/postagem/add', (req, res)=>{
+    console.log(req.body.categoria)
+   new Postagens({
+    nome: req.body.nome, 
+    slog: req.body.slog,
+    descricao: req.body.descricao,
+    conteudo: req.body.conteudo,
+    categoria: req.body.categoria,
+    data: req.body.data
+    }).save().then(()=>{
+        req.flash('success_msg', 'postagem salvo com sucesso');
+        res.redirect('/admin/postagens/postagens')
+    })
 });
 
 module.exports = routes;
